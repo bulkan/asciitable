@@ -47,7 +47,7 @@ var asciitable = function asciitable(options, data) {
         return;
       }
 
-      column.width = Math.max(column.width, ("" + e[column.field]).length);
+      column.width = Math.max(column.width, ("" + JSON.stringify(e[column.field])).length);
     });
   });
 
@@ -59,7 +59,7 @@ var asciitable = function asciitable(options, data) {
   output.push([""].concat(columns.map(function(e) { return pad(e.name, e.width); })).concat([""]).join(" | "));
   output.push(separator);
   data.forEach(function(row) {
-    output.push([""].concat(columns.map(function(column) { return pad(row[column.field], column.width); })).concat([""]).join(" | "));
+    output.push([""].concat(columns.map(function(column) { return pad(JSON.stringify(row[column.field]), column.width); })).concat([""]).join(" | "));
   });
   output.push(separator);
 
